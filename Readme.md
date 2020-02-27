@@ -39,3 +39,14 @@ git clone https://github.com/lets-cli/lets-zsh-plugin.git
 cp lets.plugin.zsh ~/.oh-my-zsh/completions/_lets
 ```
 3. Restart terminal
+
+## Short version without description
+
+If you want completions without description you can modify plugin to generate short version for you.
+
+1. Open plugin file in your favorite text editor
+
+```sh
+vim ~/.oh-my-zsh/custom/plugins/lets/lets.plugin.zsh
+```
+2. And add `--short` flag - `lets completion -s zsh --short`
