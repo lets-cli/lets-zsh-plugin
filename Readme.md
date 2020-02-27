@@ -12,7 +12,7 @@ git clone https://github.com/lets-cli/lets-zsh-plugin.git lets
 2. Open `~/.zshrc` and add `lets` to `plugins`
 
 ```sh
- plugins=(… zsh-completions)
+ plugins=(… lets)
  autoload -U compinit && compinit
 ```
 
