@@ -14,7 +14,7 @@ git clone https://github.com/lets-cli/lets-zsh-plugin.git lets
 cd lets
 ```
 
-2. Install completions
+2. Install completions (you must choose between verbose and short version)
 
 Verbose version - with description it looks like:
 
@@ -31,7 +31,7 @@ test   -- Test my app
 ./install.sh --verbose
 ```
 
-Short(concise) version - without description it looks like:
+Short (concise) version - without description it looks like:
 
 ```shell script
 lets <tab>
