@@ -1,22 +1,66 @@
+# zsh autocompletion plugin for lets
+
+Lets is a cli tool for developers that is a better alternative to make - https://github.com/lets-cli/lets
+
 ## Install
 
-### Clone to oh-my-zsh custom plugins
+### Add as a zsh plugin
 
 1. Clone repo into your custom oh-my-zsh plugins
 
 ```sh
-~/.oh-my-zsh/custom/plugins/
+cd ~/.oh-my-zsh/custom/plugins/
 git clone https://github.com/lets-cli/lets-zsh-plugin.git lets
+cd lets
 ```
 
-2. Open `~/.zshrc` and add `lets` to `plugins`
+2. Install completions
 
-```sh
+Verbose version - with description it looks like:
+
+```shell script
+lets <tab>
+... generated completions
+
+build  -- Build my app
+run    -- Run my app
+test   -- Test my app
+```
+
+```shell script
+./install.sh --verbose
+```
+
+Short(concise) version - without description it looks like:
+
+```shell script
+lets <tab>
+... generated completions
+
+build run test
+```
+
+```shell script
+./install.sh
+```
+
+3. Open `~/.zshrc` and add `lets` to `plugins`
+
+```shell script
  plugins=(… lets)
- autoload -U compinit && compinit
 ```
 
-3. Restart terminal
+Do not forget to add autoload call to the end of file (it actually can be after plugins section, but its better to add it to the end of `~/.zshrc`)
+
+```shell script
+autoload -U compinit && compinit
+```
+
+4. Restart terminal
+
+```shell script
+exec $SHELL -l
+```
 
 ### Add as custom completion
 
@@ -27,26 +71,22 @@ This is usually one of the following:
 - ~/.oh-my-zsh/completions
 - ~/.zsh/completions 
 
-1. Clone repo into anu folder you like.
+> You can add your custom folder with completions to $fpath by adding next line to your ~/.zshrc
+>
+> fpath=(~/.zsh/completion $fpath)
+>
+> It is required to modify fpath before `autoload -U compinit && compinit` line
 
-```sh
-git clone https://github.com/lets-cli/lets-zsh-plugin.git
+1. Generate `_lets.zsh` completion file
+
+```shell script
+lets completion -s zsh > ~/.oh-my-zsh/completions/_lets.zsh
 ```
 
-2. Copy `lets` completion file to completions dir
+**Verbose version of completion (see [above](#add-as-a-zsh-plugin))**
 
-```sh
-cp lets.plugin.zsh ~/.oh-my-zsh/completions/_lets
+If you want a verbose completion (with description on the right side) - generate completion with `--verbose` flag
+
+```shell script
+lets completion -s zsh --verbose > ~/.oh-my-zsh/completions/_lets.zsh
 ```
-3. Restart terminal
-
-## Short version without description
-
-If you want completions without description you can modify plugin to generate short version for you.
-
-1. Open plugin file in your favorite text editor
-
-```sh
-vim ~/.oh-my-zsh/custom/plugins/lets/lets.plugin.zsh
-```
-2. And add `--short` flag - `lets completion -s zsh --short`
