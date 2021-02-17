@@ -4,9 +4,15 @@ Lets is a cli tool for developers that is a better alternative to make - https:/
 
 ## Install
 
-### Add as a zsh plugin
 
-#### Manual
+There are three options while installing as zsh plugin:
+
+- [Manually download plugin and put it in the right place](#Manual-installation-as-a-zsh-plugin)
+- [Using antigen plugin manager](#Install-using-Antigen)
+- [Add as custom completion](#Add-as-custom-completion)
+
+
+#### Manual installation as a zsh plugin 
 
 1. Clone repo into your custom oh-my-zsh plugins
 
@@ -64,7 +70,7 @@ autoload -U compinit && compinit
 exec $SHELL -l
 ```
 
-#### Antigen
+### Install using Antigen
 
 ```shell script
 antigen bundle lets-cli/lets-zsh-plugin
