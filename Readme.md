@@ -6,6 +6,8 @@ Lets is a cli tool for developers that is a better alternative to make - https:/
 
 ### Add as a zsh plugin
 
+#### Manual
+
 1. Clone repo into your custom oh-my-zsh plugins
 
 ```sh
@@ -60,6 +62,12 @@ autoload -U compinit && compinit
 
 ```shell script
 exec $SHELL -l
+```
+
+#### Antigen
+
+```shell script
+antigen bundle lets-cli/lets-zsh-plugin
 ```
 
 ### Add as custom completion
