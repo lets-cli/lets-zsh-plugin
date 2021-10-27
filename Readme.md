@@ -76,6 +76,12 @@ exec $SHELL -l
 antigen bundle lets-cli/lets-zsh-plugin
 ```
 
+Run lets plugin `install.sh` script
+
+```shell script
+bash $HOME/.antigen/bundles/lets-cli/lets-zsh-plugin/install.sh # you may add --verbose (see Install completions section above)
+```
+
 ### Add as custom completion
 
 You can put lets autocompletion in any folder existed in `$fpath`.
