@@ -4,16 +4,6 @@ Lets is a cli tool for developers that is a better alternative to make - https:/
 
 ## Install
 
-
-There are three options while installing as zsh plugin:
-
-- [Manually download plugin and put it in the right place](#Manual-installation-as-a-zsh-plugin)
-- [Using antigen plugin manager](#Install-using-Antigen)
-- [Add as custom completion](#Add-as-custom-completion)
-
-
-#### Manual installation as a zsh plugin 
-
 **oh-my-zsh**
 
 Just clone plugin to oh-my-zsh plugins directory
@@ -26,7 +16,7 @@ git clone https://github.com/lets-cli/lets-zsh-plugin.git lets
 Open `~/.zshrc` and add `lets` to `plugins`
 
 ```shell script
- plugins=(… lets)
+ plugins=(lets)
 ```
 
 **zinit**
@@ -78,6 +68,8 @@ lets completion -s zsh > ~/.oh-my-zsh/completions/_lets.zsh
 ```sh
 lets completion -s zsh > ~/.local/share/zinit/completions/_lets
 ```
+
+---
 
 Do not forget to add autoload call to the end of file (it actually can be after plugins section, but its better to add it to the end of `~/.zshrc`)
 
