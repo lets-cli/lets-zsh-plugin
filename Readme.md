@@ -14,17 +14,36 @@ There are three options while installing as zsh plugin:
 
 #### Manual installation as a zsh plugin 
 
-1. Clone repo into your custom oh-my-zsh plugins
+**oh-my-zsh**
+
+Just clone plugin to oh-my-zsh plugins directory
 
 ```sh
 cd ~/.oh-my-zsh/custom/plugins/
 git clone https://github.com/lets-cli/lets-zsh-plugin.git lets
-cd lets
 ```
 
-2. Install completions (you must choose between verbose and short version)
+Open `~/.zshrc` and add `lets` to `plugins`
 
-Verbose version - with description it looks like:
+```shell script
+ plugins=(… lets)
+```
+
+**zinit**
+
+Add to your `~/.zshrc`
+
+```sh
+zinit load lets-cli/lets-zsh-plugin
+```
+
+## Completions
+
+To make completion work just generate completion script using `lets`
+
+`lets completion -s <shell>`
+
+For zsh there is `--verbose` flag which generate completions with descriptions, like this:
 
 ```shell script
 lets <tab>
@@ -35,27 +54,29 @@ run    -- Run my app
 test   -- Test my app
 ```
 
-```shell script
-./install.sh --verbose
+You can put lets autocompletion in any folder existed in `$fpath`.
+
+> You can add your custom folder with completions to $fpath by adding next line to your ~/.zshrc
+>
+> fpath=(~/.zsh/completion $fpath)
+>
+> It is required to modify fpath before `autoload -U compinit && compinit` line
+
+**oh-my-zsh**
+
+For `oh-my-zsh` this is usually one of the following:
+
+- ~/.oh-my-zsh/completions
+- ~/.zsh/completions 
+
+```sh
+lets completion -s zsh > ~/.oh-my-zsh/completions/_lets.zsh
 ```
 
-Short (concise) version - without description it looks like:
+**zinit**
 
-```shell script
-lets <tab>
-... generated completions
-
-build run test
-```
-
-```shell script
-./install.sh
-```
-
-3. Open `~/.zshrc` and add `lets` to `plugins`
-
-```shell script
- plugins=(… lets)
+```sh
+lets completion -s zsh > ~/.local/share/zinit/completions/_lets
 ```
 
 Do not forget to add autoload call to the end of file (it actually can be after plugins section, but its better to add it to the end of `~/.zshrc`)
@@ -64,49 +85,9 @@ Do not forget to add autoload call to the end of file (it actually can be after 
 autoload -U compinit && compinit
 ```
 
-4. Restart terminal
+Restart terminal
 
 ```shell script
 exec $SHELL -l
 ```
 
-### Install using Antigen
-
-```shell script
-antigen bundle lets-cli/lets-zsh-plugin
-```
-
-Run lets plugin `install.sh` script
-
-```shell script
-bash $HOME/.antigen/bundles/lets-cli/lets-zsh-plugin/install.sh # you may add --verbose (see Install completions section above)
-```
-
-### Add as custom completion
-
-You can put lets autocompletion in any folder existed in `$fpath`.
-
-This is usually one of the following:
-
-- ~/.oh-my-zsh/completions
-- ~/.zsh/completions 
-
-> You can add your custom folder with completions to $fpath by adding next line to your ~/.zshrc
->
-> fpath=(~/.zsh/completion $fpath)
->
-> It is required to modify fpath before `autoload -U compinit && compinit` line
-
-1. Generate `_lets.zsh` completion file
-
-```shell script
-lets completion -s zsh > ~/.oh-my-zsh/completions/_lets.zsh
-```
-
-**Verbose version of completion (see [above](#add-as-a-zsh-plugin))**
-
-If you want a verbose completion (with description on the right side) - generate completion with `--verbose` flag
-
-```shell script
-lets completion -s zsh --verbose > ~/.oh-my-zsh/completions/_lets.zsh
-```
