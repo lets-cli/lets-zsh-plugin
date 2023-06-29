@@ -90,6 +90,17 @@ For `oh-my-zsh` these are usually one of the following directories in `fpath`:
 lets completion -s zsh > ~/.oh-my-zsh/completions/_lets.zsh
 ```
 
+### Source completions on shell load
+
+You can just add `source <(lets completion -s zsh)` to your `~/.zshrc` file, save it and reload shell. Completions should work.
+
+If completions does not work, try to put `source <(lets completion -s zsh)` after line with `autoload -U compinit && compinit`, like this:
+
+```bash
+autoload -U compinit && compinit
+source <(lets completion -s zsh)
+```
+
 ### Configution
 For zsh there is `--verbose` flag which generate completions with descriptions, like this:
 
