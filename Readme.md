@@ -56,7 +56,7 @@ fpath=(~/.my-completions $fpath)
 And just to be sure that everything will work as expected fine, rebuild `zcompdump`:
 
 ```bash
-rm -f ~/.zcompdump; compinits
+rm -f ~/.zcompdump; compinit
 ```
 
 > Do not forget to add autoload call to the end of file (it actually can be after plugins section, but its better to add it to the end of `~/.zshrc`)
@@ -70,7 +70,6 @@ Restart terminal
 ```shell script
 exec $SHELL -l
 ```
-
 
 ### Manual configuration for zinit
 
