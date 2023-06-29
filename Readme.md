@@ -2,7 +2,7 @@
 
 Lets is a cli tool for developers that is a better alternative to make - https://github.com/lets-cli/lets
 
-## Install
+## Install as plugin
 
 **oh-my-zsh**
 
@@ -27,51 +27,39 @@ Add to your `~/.zshrc`
 zinit load lets-cli/lets-zsh-plugin
 ```
 
-## Completions
+## Manual completions setup
 
-To make completion work just generate completion script using `lets`
+You can set up completions manually (no plugins).
 
-`lets completion -s <shell>`
+Usually to make completion works you have to make sure that:
 
-For zsh there is `--verbose` flag which generate completions with descriptions, like this:
+1. A file with completions exists
+2. A path to directory with a file with completions is in `$fpath` env.
 
-```shell script
-lets <tab>
-... generated completions
+`lets` can generate completions script for you
 
-build  -- Build my app
-run    -- Run my app
-test   -- Test my app
+```bash
+lets completion -s zsh
+```
+This will print completion script, and you have to save it somewhere, for example:
+
+```bash
+lets completion -s zsh ~/.my-completions/_lets
 ```
 
-You can put lets autocompletion in any folder existed in `$fpath`.
+Now, add `~/.my-completions/_lets` to `fpath`
 
-> You can add your custom folder with completions to $fpath by adding next line to your ~/.zshrc
->
-> fpath=(~/.zsh/completion $fpath)
->
-> It is required to modify fpath before `autoload -U compinit && compinit` line
-
-**oh-my-zsh**
-
-For `oh-my-zsh` this is usually one of the following:
-
-- ~/.oh-my-zsh/completions
-- ~/.zsh/completions 
-
-```sh
-lets completion -s zsh > ~/.oh-my-zsh/completions/_lets.zsh
+```bash
+fpath=(~/.my-completions $fpath)
 ```
 
-**zinit**
+And just to be sure that everything will work as expected fine, rebuild `zcompdump`:
 
-```sh
-lets completion -s zsh > ~/.local/share/zinit/completions/_lets
+```bash
+rm -f ~/.zcompdump; compinits
 ```
 
----
-
-Do not forget to add autoload call to the end of file (it actually can be after plugins section, but its better to add it to the end of `~/.zshrc`)
+> Do not forget to add autoload call to the end of file (it actually can be after plugins section, but its better to add it to the end of `~/.zshrc`)
 
 ```shell script
 autoload -U compinit && compinit
@@ -83,3 +71,38 @@ Restart terminal
 exec $SHELL -l
 ```
 
+
+### Manual configuration for zinit
+
+Since `zinit` adds `~/.local/share/zinit/completions` to `fpath`, you just need to put completions to that directory:
+
+```sh
+lets completion -s zsh > ~/.local/share/zinit/completions/_lets
+```
+
+### Manual configuration for oh-my-zsh
+
+For `oh-my-zsh` these are usually one of the following directories in `fpath`:
+
+- ~/.oh-my-zsh/completions
+- ~/.zsh/completions 
+
+```sh
+lets completion -s zsh > ~/.oh-my-zsh/completions/_lets.zsh
+```
+
+### Configution
+For zsh there is `--verbose` flag which generate completions with descriptions, like this:
+
+```shell script
+lets <tab>
+... generated completions
+
+build  -- Build my app
+run    -- Run my app
+test   -- Test my app
+```
+
+```bash
+lets completion -s zsh --verbose
+```
