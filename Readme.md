@@ -27,6 +27,12 @@ Add to your `~/.zshrc`
 zinit load lets-cli/lets-zsh-plugin
 ```
 
+Plugin-managed completions are refreshed automatically when the resolved `lets` executable, executable metadata, or `lets --version` output changes. After updating the `lets` binary, reload the shell:
+
+```sh
+exec $SHELL -l
+```
+
 ## Manual completions setup
 
 You can set up completions manually (no plugins).
